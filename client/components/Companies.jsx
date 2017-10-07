@@ -6,8 +6,7 @@ class Companies extends Component {
     this.props.onDelete(name);
   }
 
-  editCompany(name) {
-    //console.log(name);
+  editCompany(name) {    
    this.props.onEdit(name);
   }
 
@@ -15,16 +14,13 @@ class Companies extends Component {
     let companyItem;
     if(this.props.companies) {
       
-      var filtered = this.props.companies.filter(x => x.mainCompany === undefined);
-      
+      var filtered = this.props.companies.filter(x => x.mainCompany === undefined);     
+    
       companyItem =[];
-      filtered.forEach(function(element) {
-        this.hList(this.props.companies, element, companyItem);
-      }, this);
-      console.log(companyItem);
-      
-
+      filtered.forEach(function(element) {      
+      companyItem.push ( this.hList(this.props.companies, element, companyItem) )}, this);
     }
+
     return (
       <div className="Companies">
         <h1>Good Companies</h1>
@@ -35,15 +31,21 @@ class Companies extends Component {
 
   hList(compList, parent, companyItem) {
     var childItems = compList.filter(x => x.mainCompany === parent.name);
-      companyItem.push (
-          <CompanyItem onDelete={this.deleteCompany.bind(this)} onEdit={this.editCompany.bind(this)} key={parent.name} company={parent} />
-      ); 
-
-      childItems.map(company => {
+    
+    if(childItems.length > 0) { 
+      let res = [];
+      res.push(<CompanyItem onDelete={this.deleteCompany.bind(this)} onEdit={this.editCompany.bind(this)} key={parent.name} company={parent} />);     
+      res.push(
+      
+      <ul className="list-group-item list-group-item-success">        
+      { childItems.map(company => {
         return this.hList(compList, company, companyItem);
-      });
+      }) }
+      </ul>);
+      return res;
+    } 
+      return <CompanyItem onDelete={this.deleteCompany.bind(this)} onEdit={this.editCompany.bind(this)} key={parent.name} company={parent} />
   }
-
 
 }
 

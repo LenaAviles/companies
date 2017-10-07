@@ -14,9 +14,7 @@ class CompanyItem extends Component {
   render() {
    
     return (
-      <div className="container">
-      
-      {/* <ul className="list-group-item list-group-item-info"> */}
+
         <li className="list-group-item">
         <img className="img-thumbnail App-logo" src={this.props.company.logo} href={this.props.company.logo} role="presentation"></img> 
         
@@ -26,9 +24,7 @@ class CompanyItem extends Component {
         <a href="#addCompany" className = "pull-right" onClick={this.editCompany.bind(this, this.props.company.name)}>Edit |</a>
         <br></br>
         </li>
-      {/* </ul> */}
-      
-      </div>
+
     );
   }
 }
