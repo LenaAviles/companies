@@ -14,7 +14,7 @@ function formatCompany(company) {
         id: company._id,
         name: company.name,
         earnings: company.earnings,
-        logo: company.logo, //|| '#ffffff',
+        logo: company.logo || 'https://pupinsite.ru/wp-content/uploads/2016/12/LOGO.gif',
         mainCompany: company.mainCompany,
         subCompanies: company.subCompanies
     };

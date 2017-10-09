@@ -13,8 +13,6 @@ class AddCompany extends Component {
   handleSubmit(e) {
     if(this.refs.name.value === '') {
         alert('Title is required');
-    } else if (this.refs.logo.value === '') {
-        alert('Logo link is required');
     } else if (this.refs.earnings.value === '') {
         alert('Earnings is required');
     } else if (this.refs.mainCompany.value === '' && !this.state.hideMain) {
@@ -35,10 +33,8 @@ class AddCompany extends Component {
         name: this.refs.name.value,
         earnings: Number(this.refs.earnings.value),
         logo: this.refs.logo.value,
-        mainCompany: this.refs.mainCompany.value
+        mainCompany: this.state.hideMain === 'false' ? undefined : this.refs.mainCompany.value
       }}, function() {
-        //console.log(this.state);
-        //console.log(this);
         this.props.addCompany(this.state.newCompany);
       });
     }
@@ -80,7 +76,7 @@ class AddCompany extends Component {
           </div>
           <div className="col-sm-3">
             <div>            
-            <input type="checkbox" id="mainCheckbox" checked = {hideMain} 
+            <input type="checkbox" id="mainCheckbox" ref="mainCheckBox" checked = {hideMain} 
 		        onChange={this.handleCheckedMain.bind(this)}/>
             <label>  Main Company</label>
           </div>
