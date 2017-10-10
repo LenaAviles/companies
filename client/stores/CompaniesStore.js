@@ -14,7 +14,7 @@ function formatCompany(company) {
         id: company._id,
         name: company.name,
         earnings: company.earnings,
-        logo: company.logo || 'https://pupinsite.ru/wp-content/uploads/2016/12/LOGO.gif',
+        logo: company.logo || 'https://www.grouptravelvideos.com/images/client/00954/resources/you%20logo%20here.png',
         mainCompany: company.mainCompany,
         subCompanies: company.subCompanies
     };

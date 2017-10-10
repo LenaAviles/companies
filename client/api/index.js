@@ -7,7 +7,7 @@ export default {
         return axios.get(`${apiPrefix}/companies`);
     },
 
-    createCompany(data) {
+    createCompany(data) {        
         return axios.post(`${apiPrefix}/companies`, data);
     },
 
@@ -15,8 +15,7 @@ export default {
         return axios.delete(`${apiPrefix}/companies/${companyId}`);
     },
 
-    updateCompany(companyId, editedCompany) {
-        
-        return axios.patch(`${apiPrefix}/companies/${companyId}`, editedCompany);
+    updateCompany(editedCompany) {                
+        return axios.patch(`${apiPrefix}/companies`, editedCompany);
     }
 }

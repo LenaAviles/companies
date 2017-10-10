@@ -47,8 +47,7 @@ class App extends Component {
       CompaniesStore.removeChangeListener(this._onChange.bind(this));
   }
 
-  componentWillMount() {
-    //this.getCompanies();
+  componentWillMount() {    
     CompanyActions.loadCompanies();
   }
 
@@ -63,27 +62,29 @@ class App extends Component {
     let companies = this.state.companies;
     let index = companies.findIndex(x => x.name === name);
     let delItem = companies.splice(index, 1);
-    this.setState({companies:companies});
-    //console.log(delItem[0].id);
+    this.setState({companies:companies});    
     CompanyActions.deleteCompany(delItem[0].id);
   }
 
-  handleEditCompany(name) {
-    //console.log(name);
-    //console.log(company);
+  handleEditCompany(name) {    
     let companies = this.state.companies;
     let index = companies.findIndex(x => x.name === name);
-    let editCompany = companies.find(x => x.name === name);    
-    this.setState({companies:companies, onEdit:editCompany});
-    //console.log(editCompany);
-    CompanyActions.updateCompany(editCompany.id, editCompany);
+    let editCompany = companies.find(x => x.name === name);        
+    this.setState({companies:companies, onEdit:editCompany});    
   }
 
-  render() {
-    //console.log(this);
+  handleUpdateCompany(company){
+    let companies = this.state.companies;
+    let index = companies.findIndex(x => x.name === company.name);
+    companies[index] = company;     
+    this.setState({ companies:companies });    
+    CompanyActions.updateCompany(company);    
+  }
+
+  render() {    
     return (
       <div className="App">
-        <AddCompany addCompany={this.handleAddCompany.bind(this)} onEdit={this.handleEditCompany.bind(this)} editedCompany = {this.state.onEdit}/>
+        <AddCompany addCompany={this.handleAddCompany.bind(this)} onEdit={this.handleUpdateCompany.bind(this)} editedCompany = {this.state.onEdit}/>
         <hr />
         <Companies companies={this.state.companies} onDelete={this.handleDeleteCompany.bind(this)} onEdit={this.handleEditCompany.bind(this)} />
                 
@@ -91,10 +92,8 @@ class App extends Component {
     );
   }
 
-  _onChange() {
-    //console.log(this.state);      
-      this.setState(getStateFromFlux());
-      
+  _onChange() {        
+      this.setState(getStateFromFlux());      
   }
 }
 

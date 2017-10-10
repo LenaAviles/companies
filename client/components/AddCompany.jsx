@@ -22,11 +22,11 @@ class AddCompany extends Component {
         name: this.refs.name.value,
         earnings: Number(this.refs.earnings.value),
         logo: this.refs.logo.value,
-        mainCompany: this.refs.mainCompany.value,
+        mainCompany: this.state.hideMain === 'false' ? undefined : this.refs.mainCompany.value,
         id: this.props.editedCompany.id
       }}, function() {
-        //console.log(this.state.editedCompany);
-        this.props.onEdit(this.state.editedCompany.name);        
+        console.log(this.state.editedCompany);        
+        this.props.onEdit(this.state.editedCompany);        
       });
     } else {      
       this.setState({newCompany:{

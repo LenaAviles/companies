@@ -41,19 +41,17 @@ const CompanyActions = {
         )
         .catch(err =>
             console.error(err)
-        );
+        );        
     },
 
-    updateCompany(companyId, editedCompany) {
-        
-        api.updateCompany(companyId, editedCompany)        
+    updateCompany(editedCompany) {        
+        api.updateCompany(editedCompany)        
         .then(() =>
             this.loadCompanies()
         )
         .catch(err =>
             console.error(err)
-        );
-        //console.log(api.updateCompany(companyId, editedCompany));
+        );        
     }
 };
 

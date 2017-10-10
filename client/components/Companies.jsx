@@ -12,14 +12,16 @@ class Companies extends Component {
 
   render() {
     let companyItem;
-    if(this.props.companies) {
-      
-      var filtered = this.props.companies.filter(x => x.mainCompany === undefined);     
     
+    if(this.props.companies.length > 0) {
+      
+      var filtered = this.props.companies.filter(x => x.mainCompany === undefined || x.mainCompany === ''|| x.mainCompany === null);     
+      
       companyItem =[];
       filtered.forEach(function(element) {      
       companyItem.push ( this.hList(this.props.companies, element, companyItem) )}, this);
     }
+    
 
     return (
       <div className="Companies">
